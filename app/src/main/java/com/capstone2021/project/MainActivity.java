@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         initializeKakaoReceiver();   //카카오톡 리시버 초기화
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);    // 어플이 꺼지지않게 함
-
 
 
 
