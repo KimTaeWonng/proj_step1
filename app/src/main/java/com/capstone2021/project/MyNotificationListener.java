@@ -55,8 +55,8 @@ public class MyNotificationListener extends NotificationListenerService {
                 " subText: " + subText);
 
 
-        if (sbn.getPackageName().contains("com.kakao.talk") || sbn.getPackageName().contains("com.samsung.android.messaging") || sbn.getPackageName().contains("com.google.android.apps.messaging")
-               || sbn.getPackageName().contains("insta")) {
+        if ((sbn.getPackageName().contains("com.kakao.talk") || sbn.getPackageName().contains("com.samsung.android.messaging") || sbn.getPackageName().contains("com.google.android.apps.messaging")
+               || sbn.getPackageName().contains("insta"))&& (title!=null && text!=null)) {
             if (sbn.getPackageName().contains("com.kakao.talk")) {
                 ((MainActivity) MainActivity.mContext).textView2.setText( "카카오톡" + " \n이름: " + title + " \n내용: " + text);
             }else if(sbn.getPackageName().contains("com.samsung.android.messaging") || sbn.getPackageName().contains("com.google.android.apps.messaging")) {

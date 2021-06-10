@@ -264,11 +264,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (tts != null) {
+
             tts.stop();
             tts.shutdown();
             tts = null;
-        }
+
         if (mRecognizer != null) {
             mRecognizer.destroy();
             mRecognizer.cancel();
@@ -321,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 String init = "";
                 ttsRun = true;
 
-                //TextToSpeech(string);
+
 
                 boolean handler3 = new Handler().postDelayed(new Runnable() {    /////0.5초간 딜레이  바로실행하면 notify를 읽어오는데 시간이있어서 문제가 생김.
                     @Override
@@ -485,20 +485,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         String string2 = textView.getText().toString();    //textview( recodeview를 string으로 변환 ->공백 제거하기위함)
         string2 = string2.replace(" ", "");   // 공백제거
         if (string2.indexOf("다시") > -1) {
-            TextToSpeech(string);                                           // 다시한번 들려줌 (다시 들려주는거에서 끝나지않고 음성인식을 한번더 반복하는 추가기능?)
+            TextToSpeech(string);                                           // 다시한번 들려줌
 
         } else if (string2.indexOf("카톡") > -1 || string2.indexOf("카카오톡") > -1) {
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.kakao.talk");    // 카카오톡 실행( 답장을 보내는 추가기능?)
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.kakao.talk");    // 카카오톡 실행
             startActivity(launchIntent);
-            //onDestroy();   //수정 카카오톡으로 화면이전환돼도 종료되지않게
         } else if (string2.indexOf("인스타") > -1){
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");    // 카카오톡 실행( 답장을 보내는 추가기능?)
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");
             startActivity(launchIntent);
         }else if (string2.indexOf("지도") > -1){
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.apps.maps");    // 카카오톡 실행( 답장을 보내는 추가기능?)
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.apps.maps");
             startActivity(launchIntent);
         }else if (string2.indexOf("인터넷") > -1){
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.sec.android.app.sbrowser");    // 카카오톡 실행( 답장을 보내는 추가기능?)
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.sec.android.app.sbrowser");
             startActivity(launchIntent);
         }
 
@@ -520,7 +519,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Float f = gravityX * gravityX + gravityY * gravityY + gravityZ * gravityZ;
                 double squaredD = Math.sqrt(f.doubleValue());
                 float gForce = (float) squaredD;
-                if (gForce > (SHAKE_GRAVITY *2) && !ttsRun){
+                if (gForce > (SHAKE_GRAVITY *2) && !ttsRun){             //세게흔들면 STT
                     tts.stop();
                     sttStart();
 
@@ -533,7 +532,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                         }
                     }, 5000);
-                } else if (gForce > SHAKE_GRAVITY && !ttsRun) {
+                } else if (gForce > SHAKE_GRAVITY && !ttsRun) {            //약하게 흔들면 시간알림
                     long currentTime = System.currentTimeMillis();
                     if (shakeTime + SHAKE_SKIP_TIME > currentTime) {
                         return;
